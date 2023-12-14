@@ -1,0 +1,335 @@
+Contents:
+
+1.What is nodejs?
+
+2.Npm packages
+ - In build
+ - Third party
+ - Custom"
+
+3.Synchronous vs ASynchronous
+
+4.Path Methods
+
+*************************************************************************************************************************
+
+1.What is nodejs?
+
+===>Node.js is a open source library.
+
+===>Node.js is a javascript runtime environment that allows us to run javascript code outside of the browser.
+    Javascript ஐ browser க்கு outside ல் run செய்ய தேவைப்படும் library ஆகும்.
+    
+    Example : 
+    VS code ல் console.log('hello world!'); run செய்ய Node.js பயன்படுகிறது.
+    browser ல் run செய்யக்கூடிய Javascript ஐ Node.js ஐ பயன்படுத்தி o/p ஐ பெறுகிறோம்.
+
+===>Node.js is built on top of the V8 engine (the same engine that powers google chrome).
+
+===>Node.js is a 
+
+                *** single threaded
+                *** non-blocking
+                *** asynchronous 
+                *** concurrent runtime environment
+
+===>node.js ஆனது Install ஆகி உள்ளதா என்பதை காண
+    node -v
+
+===>npm packages ஆனது Install ஆகி உள்ளதா என்பதை காண
+    npm -v
+
+===>VS code ஐ open செய்ய
+    code .
+
+===>Example 1 : A simple web server using node.js
+
+
+Create a index.js file
+
+
+// Import the module http
+const http = require('http');
+
+
+// Define the server hostname and port number
+const hostname = '127.0.0.1';  // local host IP Address
+const port     = 3000;         // user defined
+
+
+// create a server
+const server = http.createServer( (req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World\n');
+})
+
+
+// Make the server to listen to the different port number
+server.listen(port,hostname, () => {
+    console.log(`Server Running at http://${hostname}:${port}`);
+});
+
+
+To verify:
+Terminal ல் node index.js என்று கொடுத்தால் "Server Running at http://127.0.0.1:3000" என்று வரவேண்டும்.
+அதேப்போல் அந்த link ஐ Search செய்யும் போது நாம் கொடுத்த content ஆன "Hello World" என்று வரவேண்டும்.
+
+                ************************************************************
+
+===>ஒரு BackEnd Project ஐ initiate செய்ய அல்லது 
+    ஒரு npm Project ஐ initiate செய்ய
+    
+    npm init என்று கொடுக்க வேண்டும்.
+
+    some details கொடுத்து OK செய்யவும்.
+
+    அப்பொழுது package.json என்ற file ஒன்று உருவாகும்.அதில் நாம் கொடுத்த details எல்லாம் show ஆகும்.
+
+    இப்பொழுது Terminal ல் node index.js (அல்லது) npm start இவ்விரண்டில் எது கொடுத்தாலும் நமக்கு run ஆகும்.
+    ஏனென்றால் package.json ல் நமக்கு initiate ஆகியுள்ளது.
+
+                ************************************************************
+
+===>Example 2 : A simple web server using node.js
+
+
+Create a server.js file
+
+
+// Import the module http
+const http = require('http');
+
+
+const notes = [
+
+    {
+        id : 1,
+        content : 'JavaScript is a Functionality',
+        important : true
+    },
+
+    {
+        id : 2,
+        content : 'CSS is a Styling',
+        important : false
+    },
+
+    {
+        id : 3,
+        content : 'React is a both (1) and (2)',
+        important : true
+    },
+
+]
+
+// Define the server hostname and port number
+const hostname = '127.0.0.1';  // local host IP Address
+const port     = 4000;         // user defined
+
+
+// create a server
+const server = http.createServer( (req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(notes));
+})
+
+
+// Make the server to listen to the different port number
+server.listen(port,hostname, () => {
+    console.log(`Server Running at http://${hostname}:${port}`);
+});
+
+
+To verify:
+Terminal ல் node server.js என்று கொடுத்தால் "Server Running at http://127.0.0.1:4000" என்று வரவேண்டும்.
+அதேப்போல் அந்த link ஐ Search செய்யும் போது notes ல் கொடுத்த content வரவேண்டும்.
+
+*************************************************************************************************************************
+
+2.Npm packages
+ - built-in
+ - Third party
+ - Custom"
+
+===>built-in :
+
+    Examples :
+
+             1.http   => To create a server
+             2.fs     => To Read/write files
+             3.path   => To Work with file paths
+             4.os     => To Get info about your operating system => To execute commands in the terminal
+             5.events => To Work with events
+             6.util   => To Work with utilities
+
+
+===>Third party :
+
+    Examples :
+
+             1.express      => To create a server
+             2.nodemon      => To Restart the server on file change
+             3.mongoose     => To Work with MongoDB
+             4.body-parser  => To parse the body of the request
+             5.cors         => To Enable cross-origin resource sharing            
+             6.bcrypt       => To Hash passwords
+             7.jsonwebtoken => To Work with JSON web tokens
+             8.axios        => To Make http requests
+             9.dotenv       => To Work with environment variables
+
+
+===>Custom :
+
+    Examples :
+
+             1.utils        => To Work with utilities
+             2.config       => To Work with configuration
+             3.middleware   => To Work with middlewares
+             4.models       => To Work with models
+             5.controllers  => To Work with controllers          
+             6.routes       => To Work with routes
+             7.services     => To Work with services
+             8.tests        => To Work with tests
+             9.utils        => To Work with utilities
+             10.validators  => To Work with validators
+             11.views       => To Work with views
+             12.public      => To Work with public files
+             13.db          => To Work with database
+             14.migrations  => To Work with database migrations
+             15.seeds       => To Work with database seeds
+             16.scripts     => To Work with scripts
+             17.logs        => To Work with logs
+             18.docs        => To Work with documentation
+             19.etc      
+
+*************************************************************************************************************************
+
+3.Synchronous vs ASynchronous
+
+===>Single thread =>Only one task is to execute.
+                    ஒரே ஒரு task ஐ மட்டும் execute செய்வது ஆகும்.
+                    Example : JavaScript
+
+    Multi thread  =>Executing multi task.
+                    Multi task ஐ execute செய்வது ஆகும்.
+                    Example : Java,C,C++
+
+
+===>Synchronous   =>It will execute all the code line by line in the order it is written.
+                    one by one ஆக (அல்லது) line ஆக execute செய்வது ஆகும்.
+                    Example : Java
+
+    Asynchronous  =>It will do the task without waiting for a task to complete it is execution.
+                    எந்த condition க்கும் wait செய்யாமல் execute செய்வது ஆகும்.
+                    Example : JavaScript & setTimeout
+
+===>JavaScript is a "Single thread Language" & "Asynchronous"
+    Java       is a "Multi  thread Language" & "Synchronous"
+
+                ************************************************************
+
+===>Example : Synchronous using node.js
+
+
+Create a test.txt file
+Hello
+
+Create a sync.js file
+
+
+const fs = require('fs');
+
+const data = fs.readFileSync('./test.txt', 'utf-8');
+console.log(data);
+
+sayHello = () => {
+    console.log('hello');
+}
+
+sayHello();
+
+o/p:
+முதலில் data ஐ காட்டும்.
+பிறகுதான்  consoleல் உள்ள "Hello" என்ற வார்த்தையை காட்டும்.
+
+                ************************************************************
+
+===>Example : Asynchronous using node.js
+
+
+Create a test.txt file
+Hello
+
+Create a async.js file
+
+
+const fs = require('fs');
+
+fs.readFile('./test.txt', 'utf-8', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+});
+
+sayHello = () => {
+    console.log('hello');
+}
+
+sayHello(); // runs before the console.log(data)
+
+
+o/p:
+முதலில் consoleல் உள்ள "Hello" என்ற வார்த்தையை காட்டும்.
+பிறகுதான் data ஐ காட்டும்.
+
+*************************************************************************************************************************
+
+4.Path Methods
+
+===>Example : Path node.js
+
+
+Create a path.js file
+
+const path = require('path');
+
+const test = '/Users/karan/Documents/Desktop/karan/be-b51/test.txt';
+
+
+===>get the directory name of the file
+    total path யும் கண்டறிய
+
+    console.log(path.dirname(test));         // /Users/karan/Documents/Desktop/karan/be-b51
+
+
+===>get the filename with extension
+    file name ஐ கண்டறிய
+
+    console.log(path.basename(test));        // test.txt
+
+
+===>get the extension alone
+    filename ன் extension ஐ கண்டறிய
+
+    console.log(path.extname(test));         // .txt  
+
+
+===>get the filename without the extension
+    filename ன் extension இல்லாமல் வர
+
+    console.log(path.basename(test, path.extname(test)));  // test
+
+
+===>To join path
+    path ஐ join செய்ய
+    
+    console.log(path.join('/Users/karan/Documents/', 'Desktop/karan', 'be-b51/test.txt'));
+    // /Users/karan/Documents/Desktop/karan/be-b51/test.txt
+
+
+===>appends teh filename with extension to the current home directory path
+
+    console.log(path.resolve('test.txt'));
+
+*************************************************************************************************************************
